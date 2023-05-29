@@ -149,19 +149,16 @@
   
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      // Request audio permission
-      document.addEventListener("click", function() {
-        var audio = new Audio("FakeLove.mp3");
-        audio.loop = true;
-        
-        // Check if the browser supports audio playback
-        if (audio.canPlayType("audio/mp3")) {
-          // Request audio playback
-          audio.play().catch(function(error) {
-            console.log("Failed to play audio: " + error);
-          });
-        }
-      });
+      var audio = new Audio("FakeLove.mp3");
+      audio.loop = true;
+      
+      // Check if the browser supports audio playback
+      if (audio.canPlayType("audio/mp3")) {
+        // Request audio playback
+        audio.play().catch(function(error) {
+          console.log("Failed to play audio: " + error);
+        });
+      }
       
       // Simulate loading time
       setTimeout(function() {
