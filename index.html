@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Projects</title>
+  <title>Sole's</title>
   <style>
     body {
       background-color: #f1eef6;
@@ -70,12 +70,28 @@
     }
     
     .loader {
-      border: 8px solid #f3f3f3; /* Light grey */
-      border-top: 8px solid #000000; /* Black */
-      border-radius: 50%;
       width: 60px;
       height: 60px;
+      position: relative;
       animation: spin 1.5s linear infinite;
+    }
+    
+    .loader::before,
+    .loader::after {
+      content: "";
+      position: absolute;
+      border: 8px solid #f3f3f3; /* Light grey */
+      border-bottom-color: #f9a8d4; /* Light pink */
+      width: 60px;
+      height: 104px;
+    }
+    
+    .loader::before {
+      top: -44px;
+    }
+    
+    .loader::after {
+      bottom: -44px;
     }
     
     @keyframes spin {
