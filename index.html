@@ -13,6 +13,7 @@
       color: #6c63ff;
       text-align: center;
       padding: 20px;
+      animation: float 3s ease-in-out infinite;
     }
     
     .project-container {
@@ -106,6 +107,13 @@
     
     .loading-container.loaded {
       display: none;
+    }
+    
+    /* Floating animation for the title */
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
     }
   </style>
   <script>
