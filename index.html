@@ -5,7 +5,7 @@
   <link rel="icon" type="image/png" href="zazagrabber-website-favicon-black.png">
   <!-- Replace "favicon.png" with the path to your favicon image file -->
   
-    <style>
+  <style>
     body {
       background-color: #f1eef6;
       font-family: Arial, sans-serif;
@@ -149,16 +149,25 @@
   
   <script>
     document.addEventListener("DOMContentLoaded", function() {
+      // Request audio permission
+      document.addEventListener("click", function() {
+        var audio = new Audio("FakeLove.mp3");
+        audio.loop = true;
+        
+        // Check if the browser supports audio playback
+        if (audio.canPlayType("audio/mp3")) {
+          // Request audio playback
+          audio.play().catch(function(error) {
+            console.log("Failed to play audio: " + error);
+          });
+        }
+      });
+      
       // Simulate loading time
       setTimeout(function() {
         document.querySelector(".project-container").classList.add("loaded");
         document.querySelector(".loading-container").classList.add("loaded");
         document.body.style.overflow = "auto"; // Enable scroll after loading
-        
-        // Play background music
-        var audio = new Audio("FakeLove.mp3");
-        audio.loop = true;
-        audio.play();
       }, 3000);
     });
   </script>
