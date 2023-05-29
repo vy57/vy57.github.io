@@ -116,7 +116,7 @@
     @keyframes float {
       0% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
-      100% { transform: translateY(0); }
+       100% { transform: translateY(0); }
     }
     
     /* Fading title animation */
@@ -146,20 +146,29 @@
       border-color: black;
     }
   </style>
-  
+
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      var audio = new Audio("FakeLove.mp3");
-      audio.loop = true;
-      
       // Check if the browser supports audio playback
-      if (audio.canPlayType("audio/mp3")) {
+      if ('AudioContext' in window || 'webkitAudioContext' in window) {
+        // Create an audio context instance
+        var AudioContext = window.AudioContext || window.webkitAudioContext;
+        var audioContext = new AudioContext();
+
         // Request audio playback
-        audio.play().catch(function(error) {
-          console.log("Failed to play audio: " + error);
-        });
+        function playAudio() {
+          var audioElement = document.getElementById('background-music');
+          var audioSource = audioContext.createMediaElementSource(audioElement);
+          audioSource.connect(audioContext.destination);
+          audioElement.play().catch(function(error) {
+            console.log("Failed to play audio: " + error);
+          });
+        }
+
+        // Play audio automatically when page loads
+        playAudio();
       }
-      
+
       // Simulate loading time
       setTimeout(function() {
         document.querySelector(".project-container").classList.add("loaded");
@@ -173,9 +182,9 @@
   <div class="loading-container">
     <div class="loader"></div>
   </div>
-  
+
   <h1>My Projects</h1>
-  
+
   <div class="project-container">
     <!-- Replace the example projects with your own -->
     <div class="project-card">
@@ -194,5 +203,8 @@
       <a href="https://github.com/zazaman4000/Monkey-Madness-">Link to Monkey Madness</a>
     </div>
   </div>
+
+  <audio id="background-music" src="FakeLove.mp3" loop></audio>
+  <!-- Replace "background-music.mp3" with the correct path to your background music file -->
 </body>
 </html>
