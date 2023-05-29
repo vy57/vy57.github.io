@@ -52,9 +52,55 @@
     .project-card a:hover {
       text-decoration: underline;
     }
+    
+    /* Loading GUI */
+    .loading-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #6c63ff;
+      color: #000000;
+    }
+    
+    .loader {
+      border: 8px solid #f3f3f3; /* Light grey */
+      border-top: 8px solid #000000; /* Black */
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1.5s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Hide loader when content is loaded */
+    .project-container.loaded {
+      visibility: visible;
+    }
+    
+    .loading-container.loaded {
+      display: none;
+    }
   </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Simulate loading time
+      setTimeout(function() {
+        document.querySelector(".project-container").classList.add("loaded");
+        document.querySelector(".loading-container").classList.add("loaded");
+      }, 3000);
+    });
+  </script>
 </head>
 <body>
+  <div class="loading-container">
+    <div class="loader"></div>
+  </div>
+  
   <h1>My Projects</h1>
   
   <div class="project-container">
