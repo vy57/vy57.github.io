@@ -7,13 +7,12 @@
       background-color: #f1eef6;
       font-family: Arial, sans-serif;
       overflow: hidden; /* Disable scroll */
-      margin-bottom: 100px; /* Add margin for the profile */
     }
     
     h1 {
       text-align: center;
       padding: 20px;
-      animation: float 3s ease-in-out infinite;
+      animation: float 3s ease-in-out infinite, fade 2s infinite;
     }
     
     .project-container {
@@ -112,9 +111,9 @@
     
     /* Fading title animation */
     @keyframes fade {
-      0% { color: black; }
-      50% { color: #6c63ff; }
-      100% { color: black; }
+      0% { color: #6c63ff; }
+      50% { color: black; }
+      100% { color: #6c63ff; }
     }
   </style>
   <script>
@@ -152,10 +151,6 @@
       <p>A very simple game</p>
       <a href="https://github.com/zazaman4000/Monkey-Madness-">Link to Monkey Madness</a>
     </div>
-  </div>
-  
-  <div class="profile">
-    <p>Your Profile Information</p>
   </div>
 </body>
 </html>
