@@ -26,6 +26,7 @@
     }
     
     .project-card {
+      position: relative;
       width: 300px;
       background-color: #ffffff;
       border-radius: 5px;
@@ -33,6 +34,7 @@
       margin: 10px;
       padding: 20px;
       transition: transform 0.3s ease;
+      z-index: 1; /* Add a higher z-index value */
     }
     
     .project-card:hover {
@@ -121,10 +123,6 @@
     }
     
     /* Outline effect on hover */
-    .project-card {
-      position: relative;
-    }
-    
     .project-card::before {
       content: "";
       position: absolute;
@@ -136,6 +134,7 @@
       border: 2px solid transparent;
       opacity: 0;
       transition: opacity 0.3s, border-color 0.3s;
+      z-index: -1; /* Add a lower z-index value */
     }
     
     .project-card:hover::before {
