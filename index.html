@@ -6,6 +6,7 @@
     body {
       background-color: #f1eef6;
       font-family: Arial, sans-serif;
+      overflow: hidden; /* Disable scroll */
     }
     
     h1 {
@@ -58,9 +59,14 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       background-color: #6c63ff;
       color: #000000;
+      z-index: 9999;
     }
     
     .loader {
@@ -92,6 +98,7 @@
       setTimeout(function() {
         document.querySelector(".project-container").classList.add("loaded");
         document.querySelector(".loading-container").classList.add("loaded");
+        document.body.style.overflow = "auto"; // Enable scroll after loading
       }, 3000);
     });
   </script>
