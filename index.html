@@ -3,6 +3,7 @@
 <head>
   <title>Sole's</title>
   <link rel="icon" type="image/png" href="zazagrabber-website-favicon-black.png">
+  <!-- Replace "favicon.png" with the path to your favicon image file -->
   
   <style>
     body {
@@ -61,27 +62,6 @@
     
     .project-card a:hover {
       text-decoration: underline;
-    }
-    
-    .project-details {
-      position: absolute;
-      top: 0;
-      right: -400px; /* Hide the details initially */
-      width: 400px;
-      background-color: #f9f9f9;
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      transition: right 0.3s ease;
-      z-index: 2;
-    }
-    
-    .project-card:hover .project-details {
-      right: 0; /* Show the details on hover */
-    }
-    
-    .project-details p {
-      margin-bottom: 10px;
     }
     
     /* Loading GUI */
@@ -165,6 +145,48 @@
       opacity: 1;
       border-color: black;
     }
+    
+    /* Detailed description */
+    .project-details {
+      position: absolute;
+      top: 0;
+      right: -400px; /* Initially hidden to the right */
+      width: 300px;
+      background-color: #ffffff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.3s, right 0.3s;
+      z-index: 2;
+    }
+    
+    .project-card:hover .project-details {
+      opacity: 1;
+      right: 0; /* Move to the right on hover */
+    }
+    
+    .project-details p {
+      color: #444444;
+      margin-bottom: 10px;
+    }
+    
+    /* Media Query for mobile responsiveness */
+    @media (max-width: 600px) {
+      .project-container {
+        margin-top: 50px;
+      }
+      
+      .project-card {
+        width: 80%;
+        max-width: 400px;
+      }
+      
+      .project-details {
+        width: 80%;
+        max-width: 400px;
+      }
+    }
   </style>
   
   <script>
@@ -210,8 +232,8 @@
       <p>Educational purpose only.</p>
       <a href="https://github.com/zazaman4000/zazagrabber">Link to ZazaGrabber</a>
       <div class="project-details">
-        <p>This project is a web scraping tool that extracts data from websites.</p>
-        <p>It is written in Python and uses the Beautiful Soup library.</p>
+        <p>ZazaGrabber is a project designed for educational purposes.</p>
+        <p>It showcases various concepts and techniques in web scraping using Python.</p>
       </div>
     </div>
     <div class="project-card">
@@ -219,8 +241,8 @@
       <p>A Casino coded in Python</p>
       <a href="https://github.com/zazaman4000/ZazaCasino">Link to ZazaCasino</a>
       <div class="project-details">
-        <p>This project is a casino game coded in Python.</p>
-        <p>It includes various casino games such as blackjack, roulette, and slots.</p>
+        <p>ZazaCasino is a Python project that simulates a casino experience.</p>
+        <p>It includes different casino games and betting mechanics.</p>
       </div>
     </div>
     <div class="project-card">
@@ -228,8 +250,8 @@
       <p>A very simple game</p>
       <a href="https://github.com/zazaman4000/Monkey-Madness-">Link to Monkey Madness</a>
       <div class="project-details">
-        <p>This project is a simple game where the player controls a monkey.</p>
-        <p>The goal is to collect bananas while avoiding obstacles.</p>
+        <p>Monkey Madness is a simple game built using a basic game engine.</p>
+        <p>It involves controlling a monkey to collect bananas while avoiding obstacles.</p>
       </div>
     </div>
   </div>
