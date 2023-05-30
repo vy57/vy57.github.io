@@ -99,136 +99,35 @@
     }
     
     .loading-content p {
-      font-size: 16px;
-      color: #000000;
+      font-size: 32px; /* Increase font size */
+      color: white; /* Set text color to white */
     }
     
     .loader {
       width: 60px;
       height: 60px;
-      position: relative;
-      animation: spin 1.5s linear infinite;
-    }
-    
-    .loader::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
       border: 8px solid #f3f3f3; /* Light grey */
-      border-top-color: #f9a8d4; /* Light pink */
+      border-top: 8px solid #6c63ff;
       border-radius: 50%;
+      animation: spin 2s linear infinite;
+      margin-bottom: 10px;
     }
     
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-    
-    /* Hide loader when content is loaded */
-    .project-container.loaded {
-      visibility: visible;
-    }
-    
-    .loading-container.loaded {
-      display: none;
-    }
-    
-    /* Floating animation for the title */
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0); }
-    }
-    
-    /* Fading title animation */
-    @keyframes fade {
-      0% { color: #6c63ff; }
-      50% { color: black; }
-      100% { color: #6c63ff; }
-    }
-    
-    /* Outline effect on hover */
-    .project-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 5px;
-      border: 2px solid transparent;
-      opacity: 0;
-      transition: opacity 0.3s, border-color 0.3s;
-      z-index: -1; /* Add a lower z-index value */
-    }
-    
-    .project-card:hover::before {
-      opacity: 1;
-      border-color: black;
-    }
-    
-    /* Project details */
-    .project-details {
-      position: absolute;
-      top: 0;
-      left: 100%; /* Initially hidden to the left of the project */
-      width: 300px;
-      background-color: #ffffff;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      opacity: 0;
-      transition: opacity 0.3s, left 0.3s; /* Update transition property */
-      z-index: 2;
-    }
-    
-    .project-card:hover .project-details {
-      opacity: 1;
-      left: calc(100% + 10px); /* Move to the right of the project on hover */
-    }
   </style>
-  
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      var audio = new Audio("FakeLove.mp3");
-      audio.loop = true;
-      var audioPlayed = false; // Flag to track if audio has been played
-
-      // Request audio permission and play audio only once
-      document.addEventListener("click", function() {
-        if (!audioPlayed) {
-          // Check if the browser supports audio playback
-          if (audio.canPlayType("audio/mp3")) {
-            // Request audio playback
-            audio.play().catch(function(error) {
-              console.log("Failed to play audio: " + error);
-            });
-            audioPlayed = true; // Set the flag to true
-          }
-        }
-      });
-
-      // Simulate loading time
-      setTimeout(function() {
-        document.querySelector(".project-container").classList.add("loaded");
-        document.querySelector(".loading-container").classList.add("loaded");
-        document.body.style.overflow = "auto"; // Enable scroll after loading
-      }, 3000);
-    });
-  </script>
 </head>
 <body>
   <div class="loading-container">
     <div class="loading-content">
       <div class="loading-ball"></div>
-      <p>Loading</p>
+      <p>Loading...</p>
     </div>
   </div>
   
-  <h1>My Projects</h1>
+  <h1>Welcome to Sole's Project Showcase!</h1>
   
   <div class="project-container">
     <!-- Replace the example projects with your own -->
@@ -306,14 +205,11 @@ This malware/spyware poses a severe threat to individuals and organizations alik
   </div>
   
   <script>
-    const projectCards = document.querySelectorAll(".project-card");
-
-    // Toggle project details visibility on click
-    projectCards.forEach(function(card) {
-      card.addEventListener("click", function() {
-        this.classList.toggle("active");
-      });
-    });
+    // Simulate loading delay
+    setTimeout(function() {
+      var loadingContainer = document.querySelector('.loading-container');
+      loadingContainer.style.display = 'none';
+    }, 2000);
   </script>
 </body>
 </html>
