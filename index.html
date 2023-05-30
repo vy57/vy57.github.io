@@ -149,37 +149,29 @@
   
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      // Request audio permission
+      var audio = new Audio("FakeLove.mp3");
+      audio.loop = true;
+      var audioPlayed = false; // Flag to track if audio has been played
+
+      // Request audio permission and play audio only once
       document.addEventListener("click", function() {
-        var audio = new Audio("FakeLove.mp3");
-        audio.loop = true;
-        
-        // Check if the browser supports audio playback
-        if (audio.canPlayType("audio/mp3")) {
-          // Request audio playback
-          audio.play().catch(function(error) {
-            console.log("Failed to play audio: " + error);
-          });
+        if (!audioPlayed) {
+          // Check if the browser supports audio playback
+          if (audio.canPlayType("audio/mp3")) {
+            // Request audio playback
+            audio.play().catch(function(error) {
+              console.log("Failed to play audio: " + error);
+            });
+            audioPlayed = true; // Set the flag to true
+          }
         }
       });
-      
+
       // Simulate loading time
       setTimeout(function() {
         document.querySelector(".project-container").classList.add("loaded");
         document.querySelector(".loading-container").classList.add("loaded");
         document.body.style.overflow = "auto"; // Enable scroll after loading
-        
-        // Simulate click in the top right corner
-        var clickElement = document.createElement("div");
-        clickElement.style.position = "fixed";
-        clickElement.style.top = "0";
-        clickElement.style.right = "0";
-        clickElement.style.width = "10px";
-        clickElement.style.height = "10px";
-        clickElement.style.cursor = "pointer";
-        document.body.appendChild(clickElement);
-        clickElement.click();
-        document.body.removeChild(clickElement);
       }, 3000);
     });
   </script>
@@ -200,7 +192,7 @@
     </div>
     <div class="project-card">
       <h2>ZazaCasino</h2>
-      <p>A Casino coded in python</p>
+      <p>A Casino coded in Python</p>
       <a href="https://github.com/zazaman4000/ZazaCasino">Link to ZazaCasino</a>
     </div>
     <div class="project-card">
