@@ -9,21 +9,28 @@
     body {
       background-color: #f1eef6;
       font-family: Arial, sans-serif;
+      overflow: hidden; /* Disable scroll */
+      user-select: none; /* Disable text highlighting */
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
     }
     
     h1 {
-      color: #6c63ff;
       text-align: center;
       padding: 20px;
+      animation: float 3s ease-in-out infinite, fade 2s infinite;
     }
     
     .project-container {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      flex-direction: column; /* Updated to vertical stacking */
+      align-items: center; /* Center align projects vertically */
+      margin-top: 100px; /* Add top margin for spacing */
     }
     
     .project-card {
+      position: relative;
       width: 300px;
       background-color: #ffffff;
       border-radius: 5px;
@@ -31,7 +38,7 @@
       margin: 10px;
       padding: 20px;
       transition: transform 0.3s ease;
-      position: relative;
+      z-index: 1; /* Add a higher z-index value */
     }
     
     .project-card:hover {
@@ -56,28 +63,39 @@
     .project-card a:hover {
       text-decoration: underline;
     }
-
-    /* Loading GUI styles */
+    
+    /* Loading GUI */
     .loading-container {
-      width: 100%;
-      height: 100vh;
-      background-color: #3c3c3c;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       position: fixed;
       top: 0;
       left: 0;
-      z-index: 999;
+      width: 100%;
+      height: 100%;
+      background-color: #6c63ff;
+      color: #000000;
+      z-index: 9999;
     }
     
     .loader {
-      width: 50px;
-      height: 50px;
-      border: 5px solid #ffc0cb;
+      width: 60px;
+      height: 60px;
+      position: relative;
+      animation: spin 1.5s linear infinite;
+    }
+    
+    .loader::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 8px solid #f3f3f3; /* Light grey */
+      border-top-color: #f9a8d4; /* Light pink */
       border-radius: 50%;
-      border-top: 5px solid #ffffff;
-      animation: spin 1s infinite linear;
     }
     
     @keyframes spin {
@@ -85,23 +103,75 @@
       100% { transform: rotate(360deg); }
     }
     
+    /* Hide loader when content is loaded */
     .project-container.loaded {
-      opacity: 1;
-      transform: translateY(0);
+      visibility: visible;
     }
     
     .loading-container.loaded {
+      display: none;
+    }
+    
+    /* Floating animation for the title */
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+    
+    /* Fading title animation */
+    @keyframes fade {
+      0% { color: #6c63ff; }
+      50% { color: black; }
+      100% { color: #6c63ff; }
+    }
+    
+    /* Outline effect on hover */
+    .project-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
+      border: 2px solid transparent;
       opacity: 0;
-      pointer-events: none;
+      transition: opacity 0.3s, border-color 0.3s;
+      z-index: -1; /* Add a lower z-index value */
+    }
+    
+    .project-card:hover::before {
+      opacity: 1;
+      border-color: black;
     }
   </style>
-
+  
   <script>
     document.addEventListener("DOMContentLoaded", function() {
+      var audio = new Audio("FakeLove.mp3");
+      audio.loop = true;
+      var audioPlayed = false; // Flag to track if audio has been played
+
+      // Request audio permission and play audio only once
+      document.addEventListener("click", function() {
+        if (!audioPlayed) {
+          // Check if the browser supports audio playback
+          if (audio.canPlayType("audio/mp3")) {
+            // Request audio playback
+            audio.play().catch(function(error) {
+              console.log("Failed to play audio: " + error);
+            });
+            audioPlayed = true; // Set the flag to true
+          }
+        }
+      });
+
       // Simulate loading time
       setTimeout(function() {
         document.querySelector(".project-container").classList.add("loaded");
         document.querySelector(".loading-container").classList.add("loaded");
+        document.body.style.overflow = "auto"; // Enable scroll after loading
       }, 3000);
     });
   </script>
@@ -110,9 +180,9 @@
   <div class="loading-container">
     <div class="loader"></div>
   </div>
-
+  
   <h1>My Projects</h1>
-
+  
   <div class="project-container">
     <!-- Replace the example projects with your own -->
     <div class="project-card">
