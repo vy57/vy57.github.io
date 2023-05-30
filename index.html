@@ -78,6 +78,31 @@
       z-index: 9999;
     }
     
+    .loading-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .loading-ball {
+      width: 60px;
+      height: 60px;
+      background-color: #f3f3f3; /* Light grey */
+      border-radius: 50%;
+      animation: bounce 1s ease-in-out infinite;
+      margin-bottom: 10px;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    .loading-content p {
+      font-size: 16px;
+      color: #000000;
+    }
+    
     .loader {
       width: 60px;
       height: 60px;
@@ -197,7 +222,10 @@
 </head>
 <body>
   <div class="loading-container">
-    <div class="loader"></div>
+    <div class="loading-content">
+      <div class="loading-ball"></div>
+      <p>Loading</p>
+    </div>
   </div>
   
   <h1>My Projects</h1>
@@ -276,5 +304,16 @@ This malware/spyware poses a severe threat to individuals and organizations alik
       </div>
     </div>
   </div>
+  
+  <script>
+    const projectCards = document.querySelectorAll(".project-card");
+
+    // Toggle project details visibility on click
+    projectCards.forEach(function(card) {
+      card.addEventListener("click", function() {
+        this.classList.toggle("active");
+      });
+    });
+  </script>
 </body>
 </html>
