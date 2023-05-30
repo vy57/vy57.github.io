@@ -44,26 +44,54 @@
       transform: translateY(-5px);
     }
     
-    .project-card h2 {
+    .project-card:hover .project-details {
+      display: block;
+      animation: slideInRight 0.3s forwards;
+    }
+    
+    .project-details {
+      position: absolute;
+      top: 0;
+      right: -320px;
+      display: none;
+      width: 300px;
+      background-color: #ffffff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      animation: slideOutRight 0.3s forwards;
+      z-index: 2; /* Place above project card */
+    }
+    
+    .project-details h2 {
       color: #6c63ff;
       margin-top: 0;
     }
     
-    .project-card p {
+    .project-details p {
       color: #444444;
       margin-bottom: 0;
     }
     
-    .project-card a {
+    .project-details a {
       color: #6c63ff;
       text-decoration: none;
     }
     
-    .project-card a:hover {
+    .project-details a:hover {
       text-decoration: underline;
     }
     
-    /* Loading GUI */
+    @keyframes slideInRight {
+      0% { right: -320px; }
+      100% { right: 0; }
+    }
+    
+    @keyframes slideOutRight {
+      0% { right: 0; }
+      100% { right: -320px; }
+    }
+    
     .loading-container {
       display: flex;
       flex-direction: column;
@@ -87,43 +115,31 @@
       animation: bounce 1s infinite;
     }
     
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-    }
-    
     .loading-text {
       font-size: 24px;
       margin-top: 20px;
     }
     
-    /* Hide loader when content is loaded */
-    .project-container.loaded {
-      visibility: visible;
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-20px); }
+      60% { transform: translateY(-10px); }
     }
     
-    .loading-container.loaded {
-      display: none;
-    }
-    
-    /* Floating animation for the title */
     @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0); }
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(-10px); }
     }
     
-    /* Fading title animation */
     @keyframes fade {
-      0% { color: #6c63ff; }
-      50% { color: #ffffff; }
-      100% { color: #6c63ff; }
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
     }
   </style>
 </head>
 
 <body>
-  <h1>My Projects</h1>
+  <h1>Sole's Projects</h1>
   
   <div class="project-container">
     <!-- Replace the example projects with your own -->
@@ -198,7 +214,8 @@ This malware/spyware poses a severe threat to individuals and organizations alik
           Can you help the monkey gather all the bananas and achieve the highest score? Join the madness and find out!</p>
       </div>
     </div>
-    
+  </div>
+  
   <div class="loading-container">
     <div class="loader"></div>
     <div class="loading-text">LOADING</div>
@@ -209,7 +226,7 @@ This malware/spyware poses a severe threat to individuals and organizations alik
     setTimeout(function() {
       // Add loaded class to show content and hide loader
       document.querySelector('.project-container').classList.add('loaded');
-      document.querySelector('.loading-container').classList.add('loaded');
+      document.querySelector('.loading-container').style.display = 'none';
     }, 3000);
   </script>
 </body>
