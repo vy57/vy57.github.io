@@ -118,39 +118,85 @@
       width: 100%;
       height: 100%;
       border: 8px solid #f3f3f3; /* Light grey */
-      border-top-color: #6c63ff; /* Primary color */
+      border-top-color: #f9a8d4; /* Light pink */
       border-radius: 50%;
     }
     
     @keyframes spin {
-      0% { transform: rotate(0); }
+      0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
     
-    /* Add classes for loaded state */
-    .loaded .project-container {
-      opacity: 1;
-      transform: translateY(0);
+        .loading-content p {
+      font-size: 24px; /* Updated font size to 24px */
+      color: white; /* Updated color to white */
     }
     
-    .loaded .loading-container {
+    /* Hide loader when content is loaded */
+    .project-container.loaded {
+      visibility: visible;
+    }
+    
+    .loading-container.loaded {
       display: none;
     }
     
-    /* Animations */
+    /* Floating animation for the title */
     @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
     }
     
+    /* Fading title animation */
     @keyframes fade {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
+      0% { color: #6c63ff; }
+      50% { color: black; }
+      100% { color: #6c63ff; }
+    }
+    
+    /* Outline effect on hover */
+    .project-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
+      border: 2px solid transparent;
+      opacity: 0;
+      transition: opacity 0.3s, border-color 0.3s;
+      z-index: -1; /* Add a lower z-index value */
+    }
+    
+    .project-card:hover::before {
+      opacity: 1;
+      border-color: black;
+    }
+    
+    /* Project details */
+    .project-details {
+      position: absolute;
+      top: 0;
+      left: 100%; /* Initially hidden to the left of the project */
+      width: 300px;
+      background-color: #ffffff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.3s, left 0.3s; /* Update transition property */
+      z-index: 2;
+    }
+    
+    .project-card:hover .project-details {
+      opacity: 1;
+      left: calc(100% + 10px); /* Move to the right of the project on hover */
     }
   </style>
   
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
       // Simulate loading time
       setTimeout(function() {
         document.querySelector(".project-container").classList.add("loaded");
@@ -164,14 +210,13 @@
   <div class="loading-container">
     <div class="loading-content">
       <div class="loading-ball"></div>
-      <div class="loader"></div>
-      <p>Loading...</p>
+      <p>Loading</p>
     </div>
   </div>
   
-  <div class="project-container">
-    <h1>Welcome to Sole's Portfolio</h1>
+  <h1>My Projects</h1>
   
+  <div class="project-container">
     <!-- Replace the example projects with your own -->
     <div class="project-card">
       <h2>ZazaGrabber</h2>
